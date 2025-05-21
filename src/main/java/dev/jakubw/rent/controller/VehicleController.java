@@ -26,17 +26,6 @@ public class VehicleController {
         return vehicleService.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle vehicle) {
-        Vehicle saved = vehicleService.save(vehicle);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVehicle(@PathVariable String id) {
-        vehicleService.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
 
     @GetMapping("/available")
     public List<Vehicle> getAvailableVehicles() {
