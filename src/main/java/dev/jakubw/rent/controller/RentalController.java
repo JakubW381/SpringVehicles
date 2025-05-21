@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/rent")
+@RequestMapping("/api/rental")
 public class RentalController {
 
     private final RentalService rentalService;
@@ -29,7 +29,7 @@ public class RentalController {
         this.rentalService = rentalService;
     }
 
-    @PostMapping
+    @PostMapping("/rent")
     public ResponseEntity<Rental> rentVehicle(@RequestBody RentalRequest rentalRequest, @AuthenticationPrincipal UserDetails userDetails){
 
         String login = userDetails.getUsername();
@@ -46,7 +46,7 @@ public class RentalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    @PostMapping
+    @PostMapping("/return")
     public ResponseEntity<?> returnVehicle(@RequestBody RentalRequest rentalRequest , @AuthenticationPrincipal UserDetails userDetails){
 
         String login = userDetails.getUsername();

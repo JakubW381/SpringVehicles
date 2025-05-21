@@ -4,6 +4,7 @@ import dev.jakubw.rent.model.Vehicle;
 import dev.jakubw.rent.repository.VehicleRepository;
 import dev.jakubw.rent.service.RentalService;
 import dev.jakubw.rent.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,9 +12,11 @@ import java.util.*;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
+
     private final VehicleRepository vehicleRepository;
     private final RentalService rentalService;
 
+    @Autowired
     public VehicleServiceImpl(VehicleRepository vehicleRepository, RentalService rentalService) {
         this.vehicleRepository = vehicleRepository;
         this.rentalService = rentalService;
@@ -26,7 +29,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<Vehicle> findAllActive() {
-        return vehicleRepository.findByIsActiveTrue();
+        return vehicleRepository.findByActiveTrue();
     }
 
     @Override

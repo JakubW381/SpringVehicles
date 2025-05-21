@@ -7,6 +7,7 @@ import dev.jakubw.rent.repository.RentalRepository;
 import dev.jakubw.rent.repository.UserRepository;
 import dev.jakubw.rent.repository.VehicleRepository;
 import dev.jakubw.rent.service.RentalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class RentalServiceImpl implements RentalService {
     private final VehicleRepository vehicleRepository;
     private final UserRepository userRepository;
 
+    @Autowired
     public RentalServiceImpl(RentalRepository rentalRepository,
                              VehicleRepository vehicleRepository,
                              UserRepository userRepository) {
@@ -55,8 +57,8 @@ public class RentalServiceImpl implements RentalService {
                 .id(UUID.randomUUID().toString())
                 .vehicle(vehicle)
                 .user(user)
-                .rentDateTime(LocalDateTime.now())
-                .returnDateTime(null)
+                .rentDate(LocalDateTime.now())
+                .returnDate(null)
                 .build();
 
         return rentalRepository.save(rental);
@@ -68,7 +70,7 @@ public class RentalServiceImpl implements RentalService {
 
         if (rentalOpt.isPresent() && rentalOpt.get().getUser().getId().equals(userId)) {
             Rental rental = rentalOpt.get();
-            rental.setReturnDateTime(LocalDateTime.now());
+            rental.setReturnDate(LocalDateTime.now());
             rentalRepository.save(rental);
             return true;
         }

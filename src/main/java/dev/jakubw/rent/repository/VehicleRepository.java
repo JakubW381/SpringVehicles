@@ -11,7 +11,7 @@ import java.util.Set;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, String> {
     // Metody findAll(), findById(), save(), deleteById() fromJpaRepository.
-    List<Vehicle> findByIsActiveTrue();
-    Optional<Vehicle> findByIdAndIsActiveTrue(String id);
-    List<Vehicle> findByIsActiveTrueAndIdNotIn(Set<String> rentedVehicleIds);
+    List<Vehicle> findByActiveTrue();
+    Optional<Vehicle> findByIdAndActiveTrue(String id);
+    List<Vehicle> findByActiveTrueAndIdNotIn(Set<String> rentedVehicleIds);
 }

@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
@@ -64,10 +66,9 @@ public class JwtUtil {
         byte[] keyBytes = Decoders.BASE64URL.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    private String getUserRole(UserDetails userDetails){
+    private List<String> getUserRole(UserDetails userDetails){
         return userDetails.getAuthorities().stream()
-                .findFirst()
                 .map(GrantedAuthority::getAuthority)
-                .orElse(null);
+                .collect(Collectors.toList());
     }
 }

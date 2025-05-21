@@ -27,7 +27,7 @@ public class Rental {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @Column(name = "rent_date", nullable = false)
-    private LocalDateTime rentDateTime;
+    private LocalDateTime rentDate;
     @Column(name = "return_date")
-    private LocalDateTime returnDateTime;
+    private LocalDateTime returnDate;
 }
